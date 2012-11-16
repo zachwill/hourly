@@ -11,10 +11,9 @@
 
 @interface NEWSInitialViewController : UIViewController <AVAudioPlayerDelegate>
 
+@property (nonatomic, strong) UISlider *slider;
 @property (nonatomic, strong) UIToolbar *toolbar;
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 @property (nonatomic, strong) UIBarButtonItem *playButton;
-
-- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag;
 
 @end

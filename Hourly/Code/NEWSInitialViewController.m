@@ -7,8 +7,13 @@
 //
 
 #import "NEWSInitialViewController.h"
+#import <tgmath.h>
+
+// ***************************************************************************
 
 @interface NEWSInitialViewController ()
+
+@property (nonatomic, strong) NSData *audioData;
 
 @end
 
@@ -30,6 +35,10 @@ static NSString * const kNPRAudioURL = @"http://app.npr.org/anon.npr-mp3/npr/new
     // UIToolbar
     [self addToolbarItems];
     [self.view addSubview:self.toolbar];
+    
+    // Load the audio data
+    [self preloadAudioData];
+    [self createTimer];
 }
 
 #pragma mark - UIToolbar
@@ -46,10 +55,11 @@ static NSString * const kNPRAudioURL = @"http://app.npr.org/anon.npr-mp3/npr/new
 }
 
 - (void)addToolbarItems {
-    self.toolbar.items = @[self.playButton];
+    UIBarButtonItem *slider = [[UIBarButtonItem alloc] initWithCustomView:self.slider];
+    self.toolbar.items = @[self.playButton, slider];
 }
 
-#pragma mark - UIBarButtonItem
+#pragma mark - UIBarButtonItems
 
 - (UIBarButtonItem *)playButton {
     if (_playButton != nil) {
@@ -57,7 +67,17 @@ static NSString * const kNPRAudioURL = @"http://app.npr.org/anon.npr-mp3/npr/new
     }
     
     _playButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(playNews)];
+    _playButton.enabled = NO;
     return _playButton;
+}
+
+- (UISlider *)slider {
+    if (_slider != nil) {
+        return _slider;
+    }
+    
+    _slider = [[UISlider alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
+    return _slider;
 }
 
 #pragma mark - AVAudioPlayer
@@ -68,12 +88,12 @@ static NSString * const kNPRAudioURL = @"http://app.npr.org/anon.npr-mp3/npr/new
     }
     
     NSError *error;
-    NSData *npr  = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:kNPRAudioURL]];
-    _audioPlayer = [[AVAudioPlayer alloc] initWithData:npr error:&error];
+    _audioPlayer = [[AVAudioPlayer alloc] initWithData:self.audioData error:&error];
+    [_audioPlayer prepareToPlay];
     _audioPlayer.delegate = self;
     
     if (error) {
-        NSLog(@"Audio Player Error: %@", error);
+        NSLog(@"%@", error);
     }
     
     return _audioPlayer;
@@ -81,16 +101,41 @@ static NSString * const kNPRAudioURL = @"http://app.npr.org/anon.npr-mp3/npr/new
 
 - (void)playNews {
     if ([self.audioPlayer isPlaying]) {
-        [self.audioPlayer stop];
+        [self.audioPlayer pause];
     } else {
         [self.audioPlayer play];
+        NSTimeInterval duration = self.audioPlayer.duration;
+        NSLog(@"%.0f:%02.0f", floorf(duration / 60), fmod(duration, 60));
     }
 }
 
-#pragma mark - AVAudioPlayerDelegate
+#pragma mark - Audio Data
 
-- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
-    
+- (void)preloadAudioData {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSData *audio = [NSData dataWithContentsOfURL:[NSURL URLWithString:kNPRAudioURL]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.audioData = audio;
+            self.playButton.enabled  = YES;
+            self.slider.maximumValue = self.audioPlayer.duration;
+        });
+    });
+}
+
+#pragma mark - Timer
+
+- (void)createTimer {
+    // This way the timer always updates -- even when scrolling.
+    NSTimer *timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(printTime) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+}
+
+- (void)printTime {
+    if ([self.audioPlayer isPlaying]) {
+        NSTimeInterval current = self.audioPlayer.currentTime;
+        self.slider.value = current;
+        NSLog(@"%.0f:%02.0f", floorf(current / 60), fmod(current, 60));
+    }
 }
 
 @end
