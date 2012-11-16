@@ -16,6 +16,8 @@
 		792A557B1655ABD000459B49 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 792A557A1655ABD000459B49 /* Default.png */; };
 		792A557D1655ABD000459B49 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 792A557C1655ABD000459B49 /* Default@2x.png */; };
 		792A557F1655ABD000459B49 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 792A557E1655ABD000459B49 /* Default-568h@2x.png */; };
+		792A55891655AC8C00459B49 /* NEWSInitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 792A55881655AC8C00459B49 /* NEWSInitialViewController.m */; };
+		792A558B1655BD9600459B49 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 792A558A1655BD9600459B49 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,11 +29,14 @@
 		792A55721655ABD000459B49 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		792A55741655ABD000459B49 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		792A55761655ABD000459B49 /* Hourly-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hourly-Prefix.pch"; sourceTree = "<group>"; };
-		792A55771655ABD000459B49 /* NEWSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NEWSAppDelegate.h; sourceTree = "<group>"; };
-		792A55781655ABD000459B49 /* NEWSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NEWSAppDelegate.m; sourceTree = "<group>"; };
+		792A55771655ABD000459B49 /* NEWSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NEWSAppDelegate.h; path = Hourly/NEWSAppDelegate.h; sourceTree = "<group>"; };
+		792A55781655ABD000459B49 /* NEWSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NEWSAppDelegate.m; path = Hourly/NEWSAppDelegate.m; sourceTree = "<group>"; };
 		792A557A1655ABD000459B49 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		792A557C1655ABD000459B49 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		792A557E1655ABD000459B49 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		792A55871655AC8C00459B49 /* NEWSInitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NEWSInitialViewController.h; path = Code/NEWSInitialViewController.h; sourceTree = "<group>"; };
+		792A55881655AC8C00459B49 /* NEWSInitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NEWSInitialViewController.m; path = Code/NEWSInitialViewController.m; sourceTree = "<group>"; };
+		792A558A1655BD9600459B49 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				792A558B1655BD9600459B49 /* AVFoundation.framework in Frameworks */,
 				792A55691655ABD000459B49 /* UIKit.framework in Frameworks */,
 				792A556B1655ABD000459B49 /* Foundation.framework in Frameworks */,
 				792A556D1655ABD000459B49 /* CoreGraphics.framework in Frameworks */,
@@ -51,7 +57,11 @@
 		792A55591655ABD000459B49 = {
 			isa = PBXGroup;
 			children = (
-				792A556E1655ABD000459B49 /* Hourly */,
+				792A55771655ABD000459B49 /* NEWSAppDelegate.h */,
+				792A55781655ABD000459B49 /* NEWSAppDelegate.m */,
+				792A55851655ABEC00459B49 /* Controllers */,
+				792A55861655ABFB00459B49 /* Views */,
+				792A556F1655ABD000459B49 /* Supporting Files */,
 				792A55671655ABD000459B49 /* Frameworks */,
 				792A55651655ABD000459B49 /* Products */,
 			);
@@ -68,21 +78,12 @@
 		792A55671655ABD000459B49 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				792A558A1655BD9600459B49 /* AVFoundation.framework */,
 				792A55681655ABD000459B49 /* UIKit.framework */,
 				792A556A1655ABD000459B49 /* Foundation.framework */,
 				792A556C1655ABD000459B49 /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		792A556E1655ABD000459B49 /* Hourly */ = {
-			isa = PBXGroup;
-			children = (
-				792A55771655ABD000459B49 /* NEWSAppDelegate.h */,
-				792A55781655ABD000459B49 /* NEWSAppDelegate.m */,
-				792A556F1655ABD000459B49 /* Supporting Files */,
-			);
-			path = Hourly;
 			sourceTree = "<group>";
 		};
 		792A556F1655ABD000459B49 /* Supporting Files */ = {
@@ -97,6 +98,25 @@
 				792A557E1655ABD000459B49 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			path = Hourly;
+			sourceTree = "<group>";
+		};
+		792A55851655ABEC00459B49 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				792A55871655AC8C00459B49 /* NEWSInitialViewController.h */,
+				792A55881655AC8C00459B49 /* NEWSInitialViewController.m */,
+			);
+			name = Controllers;
+			path = Hourly;
+			sourceTree = "<group>";
+		};
+		792A55861655ABFB00459B49 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			path = Hourly;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,6 +187,7 @@
 			files = (
 				792A55751655ABD000459B49 /* main.m in Sources */,
 				792A55791655ABD000459B49 /* NEWSAppDelegate.m in Sources */,
+				792A55891655AC8C00459B49 /* NEWSInitialViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
