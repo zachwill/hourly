@@ -77,7 +77,12 @@ static NSString * const kNPRAudioURL = @"http://app.npr.org/anon.npr-mp3/npr/new
     }
     
     _slider = [[UISlider alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
+    [_slider addTarget:self action:@selector(sliderChanged:) forControlEvents:UIControlEventValueChanged];
     return _slider;
+}
+
+- (void)sliderChanged:(UISlider *)slider {
+    [self.audioPlayer setCurrentTime:slider.value];
 }
 
 #pragma mark - AVAudioPlayer
