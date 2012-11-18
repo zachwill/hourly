@@ -8,13 +8,20 @@
 
 #import "NEWSAppDelegate.h"
 #import "NEWSInitialViewController.h"
+#import "NEWSDataModel.h"
 
 @implementation NEWSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [[NEWSInitialViewController alloc] init];
+    
+    // Create the shared URL cache
+    [[NEWSDataModel sharedModel] createSharedURLCache];
+    
+    // Root view controller
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[NEWSInitialViewController alloc] init]];
+    self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
     return YES;
 }

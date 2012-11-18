@@ -14,6 +14,9 @@
 @property (nonatomic, strong) UISlider *slider;
 @property (nonatomic, strong) UIToolbar *toolbar;
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
-@property (nonatomic, strong) UIBarButtonItem *playButton;
+@property (nonatomic, strong) UIBarButtonItem *play;
+@property (nonatomic, strong) UIBarButtonItem *refresh;
+
+- (void)remoteControlReceivedWithEvent:(UIEvent *)event;
 
 @end
