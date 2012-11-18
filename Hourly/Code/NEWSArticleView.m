@@ -11,10 +11,22 @@
 
 @implementation NEWSArticleView
 
+- (id)init {
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    
+    self.backgroundColor = [UIColor lightGrayColor];
+    return self;
+}
+
 - (void)setArticle:(Article *)article {
     _article = article;
     self.title.text = article.title;
-    self.summary.text = article.abstract;
+    NSMutableString *summary = [article.abstract mutableCopy];
+    CFStringTransform((__bridge CFMutableStringRef)(summary), NULL, kCFStringTransformToXMLHex, true);
+    self.summary.text = summary;
 }
 
 @end

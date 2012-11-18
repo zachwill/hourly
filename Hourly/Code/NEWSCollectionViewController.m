@@ -26,7 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.collectionView registerNib:[UINib nibWithNibName:@"NEWSArticleView" bundle:nil] forCellWithReuseIdentifier:@"Article"];
+    UINib *articleNib = [UINib nibWithNibName:@"NEWSArticleView" bundle:nil];
+    [self.collectionView registerNib:articleNib forCellWithReuseIdentifier:@"Article"];
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.showsVerticalScrollIndicator = YES;
     self.collectionView.backgroundColor = [UIColor whiteColor];
@@ -104,8 +105,9 @@
 {
     Article *article = [self.fetchedResultsController objectAtIndexPath:indexPath];
     CGSize constraint = CGSizeMake(280, MAXFLOAT);
-    CGSize text = [article.abstract sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:constraint];
-    return CGSizeMake(300, text.height + 40);
+    CGSize title = [article.title sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:constraint];
+    CGSize summary = [article.abstract sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:constraint];
+    return CGSizeMake(300, title.height + summary.height + 24);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
