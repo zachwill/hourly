@@ -117,7 +117,7 @@
     };
 
     NSError *error;
-    [store.backingPersistentStoreCoordinator addPersistentStoreWithType:NSInMemoryStoreType
+    [store.backingPersistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
                                                           configuration:nil
                                                                     URL:[self localStoreURL]
                                                                 options:options

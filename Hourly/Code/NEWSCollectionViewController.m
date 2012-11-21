@@ -10,6 +10,7 @@
 #import "NEWSDataModel.h"
 #import "NEWSArticleView.h"
 #import "Article.h"
+#import "NEWSWebViewController.h"
 
 // ***************************************************************************
 
@@ -105,14 +106,15 @@
 {
     Article *article = [self.fetchedResultsController objectAtIndexPath:indexPath];
     CGSize constraint = CGSizeMake(280, MAXFLOAT);
-    CGSize title = [article.title sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:constraint];
+    CGSize title = [article.title sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:constraint];
     CGSize summary = [article.abstract sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:constraint];
-    return CGSizeMake(300, title.height + summary.height + 24);
+    return CGSizeMake(300, title.height + summary.height + 22);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     Article *article = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:article.url]];
+    NEWSWebViewController *webVC = [[NEWSWebViewController alloc] initWithArticle:article];
+    [self.navigationController pushViewController:webVC animated:YES];
 }
 
 @end
