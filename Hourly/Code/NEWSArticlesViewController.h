@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NEWSCollectionViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface NEWSArticlesViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 

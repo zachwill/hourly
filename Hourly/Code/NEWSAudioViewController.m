@@ -6,14 +6,14 @@
 //  Copyright (c) 2012 Zach Williams. All rights reserved.
 //
 
-#import "NEWSInitialViewController.h"
+#import "NEWSAudioViewController.h"
 #import <tgmath.h>
-#import "NEWSCollectionViewController.h"
+#import "NEWSArticlesViewController.h"
 #import "NEWSLayout.h"
 
 // ***************************************************************************
 
-@interface NEWSInitialViewController () <AVAudioSessionDelegate>
+@interface NEWSAudioViewController () <AVAudioSessionDelegate>
 
 @property (nonatomic, strong) NSData *audioData;
 @property (nonatomic, strong) UIBarButtonItem *pause;
@@ -31,7 +31,7 @@ static NSString * const kNPRAudioURL = @"http://app.npr.org/anon.npr-mp3/npr/new
 
 // ***************************************************************************
 
-@implementation NEWSInitialViewController
+@implementation NEWSAudioViewController
 
 #pragma mark - UIViewController
 
@@ -40,7 +40,7 @@ static NSString * const kNPRAudioURL = @"http://app.npr.org/anon.npr-mp3/npr/new
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor purpleColor];
     
-    NEWSCollectionViewController *newsCollection = [[NEWSCollectionViewController alloc] initWithCollectionViewLayout:[[NEWSLayout alloc] init]];
+    NEWSArticlesViewController *newsCollection = [[NEWSArticlesViewController alloc] initWithCollectionViewLayout:[[NEWSLayout alloc] init]];
     newsCollection.collectionView.frame = CGRectMake(0, -20, self.view.frame.size.width, self.view.frame.size.height - 44);
     [self addChildViewController:newsCollection];
     [newsCollection didMoveToParentViewController:self];

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 
-@interface NEWSInitialViewController : UIViewController <AVAudioPlayerDelegate>
+@interface NEWSAudioViewController : UIViewController <AVAudioPlayerDelegate>
 
 @property (nonatomic, strong) UISlider *slider;
 @property (nonatomic, strong) UIToolbar *toolbar;

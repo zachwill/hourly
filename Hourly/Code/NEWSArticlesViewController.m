@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Zach Williams. All rights reserved.
 //
 
-#import "NEWSCollectionViewController.h"
+#import "NEWSArticlesViewController.h"
 #import "NEWSDataModel.h"
 #import "NEWSArticleView.h"
 #import "Article.h"
@@ -14,7 +14,7 @@
 
 // ***************************************************************************
 
-@interface NEWSCollectionViewController () <NSFetchedResultsControllerDelegate>
+@interface NEWSArticlesViewController () <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
@@ -22,7 +22,7 @@
 
 // ***************************************************************************
 
-@implementation NEWSCollectionViewController
+@implementation NEWSArticlesViewController
 
 - (void)viewDidLoad
 {

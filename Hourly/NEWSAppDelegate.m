@@ -7,7 +7,7 @@
 //
 
 #import "NEWSAppDelegate.h"
-#import "NEWSInitialViewController.h"
+#import "NEWSAudioViewController.h"
 #import "NEWSDataModel.h"
 
 @implementation NEWSAppDelegate
@@ -20,7 +20,7 @@
     [[NEWSDataModel sharedModel] createSharedURLCache];
     
     // Root view controller
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[NEWSInitialViewController alloc] init]];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[NEWSAudioViewController alloc] init]];
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
     return YES;
