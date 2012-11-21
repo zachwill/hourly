@@ -102,7 +102,6 @@ static NSString * const kNPRAudioURL = @"http://app.npr.org/anon.npr-mp3/npr/new
     RETURN_IF_NOT_NIL(_slider);
     _slider = [[UISlider alloc] initWithFrame:CGRectMake(0, 0, 210, 40)];
     [_slider addTarget:self action:@selector(sliderChanged:) forControlEvents:UIControlEventValueChanged];
-    [_slider setThumbImage:[[UIImage alloc] init] forState:UIControlStateNormal];
     return _slider;
 }
 
