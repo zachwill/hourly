@@ -8,8 +8,18 @@
 
 #import "NEWSAPIClient.h"
 
+// ***************************************************************************
+
 static NSString * const kNEWSBaseURL = @"http://api.nytimes.com/svc/mostpopular/v2/";
 static NSString * const kAPIKey = @"7d6bd012e70ea6dd05a4aae78a58cba8:12:66944183";
+
+static NSString * NEWSRemoveNewlinesFromContent(NSString *title) {
+    NSArray *components = [title componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    components = [components filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self <> ''"]];
+    return [components componentsJoinedByString:@" "];
+}
+
+// ***************************************************************************
 
 @implementation NEWSAPIClient
 
@@ -62,6 +72,8 @@ static NSString * const kAPIKey = @"7d6bd012e70ea6dd05a4aae78a58cba8:12:66944183
     if ([entity.name isEqualToString:@"Article"]) {
         mutableProperties[@"published"] = representation[@"published_date"];
         mutableProperties[@"shares"] = representation[@"total_shares"];
+        mutableProperties[@"abstract"] = NEWSRemoveNewlinesFromContent(representation[@"abstract"]);
+        mutableProperties[@"title"] = NEWSRemoveNewlinesFromContent(representation[@"title"]);
     }
     return mutableProperties;
 }

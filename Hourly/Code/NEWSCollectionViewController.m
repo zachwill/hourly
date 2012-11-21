@@ -106,8 +106,8 @@
 {
     Article *article = [self.fetchedResultsController objectAtIndexPath:indexPath];
     CGSize constraint = CGSizeMake(280, MAXFLOAT);
-    CGSize title = [article.title sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:constraint];
     CGSize summary = [article.abstract sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:constraint];
+    CGSize title = [article.title sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:constraint];
     return CGSizeMake(300, title.height + summary.height + 22);
 }
 

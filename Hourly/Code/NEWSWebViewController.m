@@ -30,12 +30,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, -10, self.view.frame.size.width, self.view.frame.size.height)];
+    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, -10, self.view.frame.size.width, self.view.frame.size.height - 34)];
     self.webView.delegate = self;
     [self.webView loadRequest:self.articleRequest];
     self.webView.scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
-    self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.webView];
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 #pragma mark - UIWebViewDelegate
@@ -44,7 +44,7 @@
     if (navigationType == UIWebViewNavigationTypeOther || navigationType == UIWebViewNavigationTypeLinkClicked) {
         return YES;
     }
-    
+    NSLog(@"%@", request);
     return NO;
 }
 
@@ -66,9 +66,9 @@
         return _articleRequest;
     }
     
-    NSURL *nytimes  = [NSURL URLWithString:[NSString stringWithFormat:@"%@?pagewanted=print&page=0", self.article.url]];
+    NSURL *nytimes  = [NSURL URLWithString:[NSString stringWithFormat:@"%@?pagewanted=print", self.article.url]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nytimes];
-    [request setValue:@"http://nytimes.com" forHTTPHeaderField:@"Referer"];
+    [request setValue:self.article.url forHTTPHeaderField:@"Referer"];
     _articleRequest = request;
     return _articleRequest;
 }
