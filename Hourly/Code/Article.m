@@ -2,7 +2,7 @@
 //  Article.m
 //  Hourly
 //
-//  Created by Zach Williams on 11/18/12.
+//  Created by Zach Williams on 11/27/12.
 //  Copyright (c) 2012 Zach Williams. All rights reserved.
 //
 
@@ -14,6 +14,7 @@
 @dynamic abstract;
 @dynamic byline;
 @dynamic published;
+@dynamic score;
 @dynamic section;
 @dynamic shares;
 @dynamic title;

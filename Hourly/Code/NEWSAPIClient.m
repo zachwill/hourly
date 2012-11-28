@@ -19,6 +19,19 @@ static NSString * NEWSRemoveNewlinesFromContent(NSString *title) {
     return [components componentsJoinedByString:@" "];
 }
 
+static NSDate * NEWSDateFormatter(NSString *dateString) {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyy-MM-dd";
+    return [formatter dateFromString:dateString];
+}
+
+// Score based on Hacker News algorithm.
+static float HNScore(NSDate *date, NSNumber *score) {
+    NSTimeInterval hours = abs([date timeIntervalSinceNow]) / 3600;
+    // Use 1.25 rather than 1.8 for gravity.
+    return ([score floatValue] / pow(hours, 1.25));
+}
+
 // ***************************************************************************
 
 @implementation NEWSAPIClient
@@ -70,10 +83,13 @@ static NSString * NEWSRemoveNewlinesFromContent(NSString *title) {
                                                                         ofEntity:entity
                                                                     fromResponse:response] mutableCopy];
     if ([entity.name isEqualToString:@"Article"]) {
-        mutableProperties[@"published"] = representation[@"published_date"];
         mutableProperties[@"shares"] = representation[@"total_shares"];
-        mutableProperties[@"abstract"] = NEWSRemoveNewlinesFromContent(representation[@"abstract"]);
         mutableProperties[@"title"] = NEWSRemoveNewlinesFromContent(representation[@"title"]);
+        mutableProperties[@"abstract"] = NEWSRemoveNewlinesFromContent(representation[@"abstract"]);
+        NSDate *published = NEWSDateFormatter(representation[@"published_date"]);
+        mutableProperties[@"published"] = published;
+        // Calculate the score... shares / (hours * 1.8)
+        mutableProperties[@"score"] = @(HNScore(published, mutableProperties[@"shares"]));
     }
     return mutableProperties;
 }

@@ -3,14 +3,13 @@
     <entity name="Article" representedClassName="Article" syncable="YES">
         <attribute name="abstract" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="byline" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="published" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="score" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="published" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="section" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="shares" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Article" positionX="160" positionY="192" width="128" height="165"/>
+        <element name="Article" positionX="160" positionY="192" width="128" height="150"/>
     </elements>
 </model>

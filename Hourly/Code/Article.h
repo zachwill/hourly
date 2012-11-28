@@ -2,7 +2,7 @@
 //  Article.h
 //  Hourly
 //
-//  Created by Zach Williams on 11/18/12.
+//  Created by Zach Williams on 11/27/12.
 //  Copyright (c) 2012 Zach Williams. All rights reserved.
 //
 
@@ -14,7 +14,8 @@
 
 @property (nonatomic, retain) NSString * abstract;
 @property (nonatomic, retain) NSString * byline;
-@property (nonatomic, retain) NSString * published;
+@property (nonatomic, retain) NSDate * published;
+@property (nonatomic, retain) NSNumber * score;
 @property (nonatomic, retain) NSString * section;
 @property (nonatomic, retain) NSNumber * shares;
 @property (nonatomic, retain) NSString * title;

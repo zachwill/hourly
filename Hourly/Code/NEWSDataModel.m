@@ -105,7 +105,7 @@
     if (_persistentStoreCoordinator != nil) {
         return _persistentStoreCoordinator;
     }
-
+    
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
     NSString *storeType = [self persistentStoreType];
     AFIncrementalStore *store = (AFIncrementalStore *)[_persistentStoreCoordinator addPersistentStoreWithType:storeType
@@ -117,7 +117,7 @@
     };
 
     NSError *error;
-    [store.backingPersistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+    [store.backingPersistentStoreCoordinator addPersistentStoreWithType:NSInMemoryStoreType
                                                           configuration:nil
                                                                     URL:[self localStoreURL]
                                                                 options:options

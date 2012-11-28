@@ -58,6 +58,7 @@
 
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Article"];
     NSManagedObjectContext *context = [[NEWSDataModel sharedModel] mainContext];
+    fetchRequest.fetchLimit = 20;
     fetchRequest.returnsObjectsAsFaults = NO;
     fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"shares" ascending:NO]];
     _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
@@ -95,6 +96,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     NEWSArticleView *articleView = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"Article" forIndexPath:indexPath];
     articleView.article = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    NSLog(@"%@", articleView.article.score);
     return articleView;
 }
 

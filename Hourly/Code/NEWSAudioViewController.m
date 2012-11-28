@@ -22,7 +22,7 @@
 
 // ***************************************************************************
 
-static NSString * const kNPRAudioURL = @"http://app.npr.org/anon.npr-mp3/npr/news/newscast.mp3";
+NSString * const kNPRAudioURL = @"http://app.npr.org/anon.npr-mp3/npr/news/newscast.mp3";
 
 #define RETURN_IF_NOT_NIL(ivar) \
     do { \
