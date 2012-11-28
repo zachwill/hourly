@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A2C3D58D795405493A3BAFF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 297C1A638384472583607EFF /* libPods.a */; };
 		5BBECEF8EE054A3A802E9173 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CD5E4CAC5F4C8F952C9B71 /* libPods.a */; };
 		792A55691655ABD000459B49 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 792A55681655ABD000459B49 /* UIKit.framework */; };
 		792A556B1655ABD000459B49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 792A556A1655ABD000459B49 /* Foundation.framework */; };
@@ -28,6 +29,7 @@
 		798198011658B282005E5343 /* NEWSDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 798198001658B282005E5343 /* NEWSDataModel.m */; };
 		798198031658B29C005E5343 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798198021658B29C005E5343 /* CoreData.framework */; };
 		798198061658B36B005E5343 /* NEWSIncrementalStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 798198051658B36B005E5343 /* NEWSIncrementalStore.m */; };
+		798E56961665E1BA00BD1013 /* article.html in Resources */ = {isa = PBXBuildFile; fileRef = 798E56951665E1BA00BD1013 /* article.html */; };
 		79E0F93A1658FBBB00B787B4 /* NEWSArticleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0F9361658FBBB00B787B4 /* NEWSArticleView.m */; };
 		79E0F93B1658FBBB00B787B4 /* NEWSArticleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79E0F9371658FBBB00B787B4 /* NEWSArticleView.xib */; };
 		79E0F93C1658FBBB00B787B4 /* NEWSLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0F9391658FBBB00B787B4 /* NEWSLayout.m */; };
@@ -42,6 +44,7 @@
 /* Begin PBXFileReference section */
 		1D0B448465B64614A7DC43A8 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		268FDF453D8C43F59DD5E279 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		297C1A638384472583607EFF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		71248EDE4F324941B9863366 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		792A55641655ABD000459B49 /* Hourly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hourly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		792A55681655ABD000459B49 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -75,6 +78,7 @@
 		798198021658B29C005E5343 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		798198041658B36B005E5343 /* NEWSIncrementalStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEWSIncrementalStore.h; sourceTree = "<group>"; };
 		798198051658B36B005E5343 /* NEWSIncrementalStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEWSIncrementalStore.m; sourceTree = "<group>"; };
+		798E56951665E1BA00BD1013 /* article.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = article.html; sourceTree = "<group>"; };
 		79E0F9351658FBBB00B787B4 /* NEWSArticleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEWSArticleView.h; sourceTree = "<group>"; };
 		79E0F9361658FBBB00B787B4 /* NEWSArticleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEWSArticleView.m; sourceTree = "<group>"; };
 		79E0F9371658FBBB00B787B4 /* NEWSArticleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NEWSArticleView.xib; sourceTree = "<group>"; };
@@ -85,6 +89,7 @@
 		79F22A431658BEFF00B468BC /* cap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cap.png; sourceTree = "<group>"; };
 		79F22A441658BEFF00B468BC /* cap@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cap@2x.png"; sourceTree = "<group>"; };
 		8B183F0C2C60451481C0F743 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		A73072D4439B40FFB6B92825 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		A9CD5E4CAC5F4C8F952C9B71 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6DB5873169548B193C74D2D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -102,6 +107,7 @@
 				5BBECEF8EE054A3A802E9173 /* libPods.a in Frameworks */,
 				CE5B803681614207B9A121F2 /* libPods.a in Frameworks */,
 				B36FB11C12EF4E2BA5F5F3C8 /* libPods.a in Frameworks */,
+				0A2C3D58D795405493A3BAFF /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +131,7 @@
 				71248EDE4F324941B9863366 /* Pods.xcconfig */,
 				8B183F0C2C60451481C0F743 /* Pods.xcconfig */,
 				1D0B448465B64614A7DC43A8 /* Pods.xcconfig */,
+				A73072D4439B40FFB6B92825 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,6 +154,7 @@
 				A9CD5E4CAC5F4C8F952C9B71 /* libPods.a */,
 				F6DB5873169548B193C74D2D /* libPods.a */,
 				268FDF453D8C43F59DD5E279 /* libPods.a */,
+				297C1A638384472583607EFF /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -198,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				79573B151665DD3100E9F204 /* html.mustache */,
+				798E56951665E1BA00BD1013 /* article.html */,
 			);
 			name = Mustache;
 			sourceTree = "<group>";
@@ -242,6 +251,7 @@
 				5D41AC4378A0430FAD9BBD70 /* Copy Pods Resources */,
 				02DC64A2A8344B1F86B2D4DE /* Copy Pods Resources */,
 				E5C71BDA8EB14D2D9A58E184 /* Copy Pods Resources */,
+				EFC656C46E8C4E03BE0E2E88 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -294,6 +304,7 @@
 				79F22A461658BEFF00B468BC /* cap@2x.png in Resources */,
 				79E0F93B1658FBBB00B787B4 /* NEWSArticleView.xib in Resources */,
 				79573B161665DD3100E9F204 /* html.mustache in Resources */,
+				798E56961665E1BA00BD1013 /* article.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +340,20 @@
 			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
 		};
 		E5C71BDA8EB14D2D9A58E184 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+		EFC656C46E8C4E03BE0E2E88 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -430,7 +455,7 @@
 		};
 		792A55831655ABD000459B49 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1D0B448465B64614A7DC43A8 /* Pods.xcconfig */;
+			baseConfigurationReference = A73072D4439B40FFB6B92825 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hourly/Hourly-Prefix.pch";
@@ -442,7 +467,7 @@
 		};
 		792A55841655ABD000459B49 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1D0B448465B64614A7DC43A8 /* Pods.xcconfig */;
+			baseConfigurationReference = A73072D4439B40FFB6B92825 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hourly/Hourly-Prefix.pch";

@@ -9,6 +9,7 @@
 #import "NEWSWebViewController.h"
 #import "Article.h"
 #import "AFNetworking.h"
+#import "GRMustache.h"
 
 @interface NEWSWebViewController ()
 @property (nonatomic, strong) UIWebView *webView;
@@ -32,10 +33,39 @@
     [super viewDidLoad];
     self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, -10, self.view.frame.size.width, self.view.frame.size.height - 34)];
     self.webView.delegate = self;
-    [self.webView loadRequest:self.articleRequest];
-    self.webView.scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
+    [self loadGRMustacheHTML];
     [self.view addSubview:self.webView];
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                                                                           target:self
+                                                                                           action:@selector(shareArticle:)];
+    
+    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swiped:)];
+    swipe.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.webView.scrollView addGestureRecognizer:swipe];
+}
+
+- (void)loadGRMustacheHTML {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:self.articleRequest];
+        [operation setSuccessCallbackQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
+        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            // Regular expression for <body>
+            NSString *html = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"</?body[^>]*>(.*)</body>" options:NSRegularExpressionDotMatchesLineSeparators error:nil];
+            [regex enumerateMatchesInString:html options:NSRegularExpressionDotMatchesLineSeparators range:NSMakeRange(0, html.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+                if (result != nil && result.numberOfRanges > 1) {
+                    NSString *innerHTML = [html substringWithRange:[result rangeAtIndex:1]];
+                    NSString *render = [GRMustacheTemplate renderObject:@{@"body": innerHTML} fromResource:@"html" bundle:nil error:nil];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.webView loadHTMLString:render baseURL:[NSURL URLWithString:@"http://httpbin.org"]];
+                    });
+                }
+            }];
+        } failure:nil];
+        [operation start];
+    });
 }
 
 #pragma mark - UIWebViewDelegate
@@ -69,9 +99,30 @@
     
     NSURL *nytimes  = [NSURL URLWithString:[NSString stringWithFormat:@"%@?pagewanted=print", self.article.url]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nytimes];
-    [request setValue:self.article.url forHTTPHeaderField:@"Referer"];
+    [request setValue:@"http://nytimes.com/" forHTTPHeaderField:@"Referer"];
     _articleRequest = request;
     return _articleRequest;
+}
+
+#pragma mark - UIGestureRecognizers
+
+- (void)swiped:(UISwipeGestureRecognizer *)swipe {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - UIActionSheet
+
+- (void)shareArticle:(id)sender {
+    NSURL *articleURL = [NSURL URLWithString:self.article.url];
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[articleURL] applicationActivities:nil];
+    activityVC.excludedActivityTypes = @[
+        UIActivityTypeAssignToContact,
+        UIActivityTypeCopyToPasteboard,
+        UIActivityTypePostToFacebook,
+        UIActivityTypePostToWeibo,
+        UIActivityTypePrint
+    ];
+    [self presentViewController:activityVC animated:YES completion:nil];
 }
 
 @end
