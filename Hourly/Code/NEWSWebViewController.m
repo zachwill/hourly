@@ -37,10 +37,10 @@
     [self.view addSubview:self.webView];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-                                                                                           target:self
-                                                                                           action:@selector(shareArticle:)];
+    // Who doesn't like sharing articles, right?
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareArticle:)];
     
+    // Swipe to go back
     UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swiped:)];
     swipe.direction = UISwipeGestureRecognizerDirectionRight;
     [self.webView.scrollView addGestureRecognizer:swipe];
@@ -51,7 +51,6 @@
         AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:self.articleRequest];
         [operation setSuccessCallbackQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
         [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-            // Regular expression for <body>
             NSString *html = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
             NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"</?body[^>]*>(.*)</body>" options:NSRegularExpressionDotMatchesLineSeparators error:nil];
             [regex enumerateMatchesInString:html options:NSRegularExpressionDotMatchesLineSeparators range:NSMakeRange(0, html.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
